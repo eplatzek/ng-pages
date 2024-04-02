@@ -3,10 +3,14 @@ import { Component, OnInit } from '@angular/core';
 import { ChatGptService } from '../services/chat-gpt.service';
 import { FormsModule } from '@angular/forms';
 
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatButtonModule } from '@angular/material/button';
+
 @Component({
   standalone: true,
   selector: 'app-chat',
-  imports: [FormsModule],
+  imports: [FormsModule, MatFormFieldModule, MatInputModule, MatButtonModule],
   templateUrl: './chat.component.html'
 })
 
