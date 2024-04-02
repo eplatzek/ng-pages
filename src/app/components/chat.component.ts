@@ -32,8 +32,10 @@ export class ChatComponent implements OnInit {
   public sendToGpt3(): void {
     if (this.apiKey) {
       this.chatGptService.chatWithGpt3(this.chatInput, this.apiKey).subscribe(response => {
-        this.chatOutput = response.choices[0].text;
+        this.chatOutput = response.choices[0].message.content;
       });
+
+      console.log(this.chatOutput);
     } else {
       alert('No API key provided');
     }

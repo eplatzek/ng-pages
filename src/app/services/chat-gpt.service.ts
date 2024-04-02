@@ -2,6 +2,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { ChatResponse } from '../classes/chat-response';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +12,7 @@ export class ChatGptService {
 
   constructor(private http: HttpClient) { }
 
-  public chatWithGpt3(prompt: string, apiKey: string): Observable<any> {
+  public chatWithGpt3(prompt: string, apiKey: string): Observable<ChatResponse> {
     const data = {
         model: 'gpt-3.5-turbo',
         messages: [
@@ -23,11 +24,11 @@ export class ChatGptService {
         temperature: 0.7
       };
 
-    return this.http.post(this.apiUrl, data, {
-      headers: {
-        'Authorization': `Bearer ${apiKey}`,
-        'Content-Type': 'application/json'
-      }
+    return this.http.post<any>(this.apiUrl, data, {
+        headers: {
+            'Authorization': `Bearer ${apiKey}`,
+            'Content-Type': 'application/json'
+        }
     });
   }
 }
