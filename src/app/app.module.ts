@@ -4,7 +4,6 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 
 import { AppComponent }  from './app.component';
-import { ChatGptService } from './services/chat-gpt.service';
 
 @NgModule({
     imports: [
@@ -12,7 +11,6 @@ import { ChatGptService } from './services/chat-gpt.service';
         HttpClientModule,
         FormsModule,
         AppComponent,
-        ChatGptService,
     ],
 })
 export class AppModule { }

@@ -6,22 +6,26 @@ import { Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
-
 export class ChatGptService {
-  private readonly apiUrl = 'https://api.openai.com/v1/engines/davinci-codex/completions';
-  private readonly apiKey = 'YOUR_OPENAI_KEY'
+  private readonly apiUrl = 'https://api.openai.com/v1/chat/completions';
 
   constructor(private http: HttpClient) { }
 
-  public chatWithGpt3(prompt: string): Observable<any> {
+  public chatWithGpt3(prompt: string, apiKey: string): Observable<any> {
     const data = {
-      prompt: prompt,
-      max_tokens: 60
-    };
+        model: 'gpt-3.5-turbo',
+        messages: [
+          {
+            role: 'user',
+            content: prompt
+          }
+        ],
+        temperature: 0.7
+      };
 
     return this.http.post(this.apiUrl, data, {
       headers: {
-        'Authorization': `Bearer ${this.apiKey}`,
+        'Authorization': `Bearer ${apiKey}`,
         'Content-Type': 'application/json'
       }
     });
