@@ -3,9 +3,9 @@
 <input [(ngModel)]="chatInput" type="text">
   <button (click)="sendToGpt3()">Send</button>
 </div>
+<button (click)="replaceKey()">Replace API Key</button>
+<button (click)="deleteKey()">Delete API Key</button>
 <div>
   <p>{{chatOutput}}</p>
 </div>
 <!-- app.component.html -->
-<button (click)="replaceKey()">Replace API Key</button>
-<button (click)="deleteKey()">Delete API Key</button>
