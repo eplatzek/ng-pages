@@ -1,0 +1,8 @@
+<!-- chat.component.html -->
+<div>
+<input [(ngModel)]="chatInput" type="text">
+  <button (click)="sendToGpt3()">Send</button>
+</div>
+<div>
+  <p>{{chatOutput}}</p>
+</div>
