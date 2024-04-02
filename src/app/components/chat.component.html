@@ -1,11 +1,17 @@
 <!-- chat.component.html -->
-<div>
-<input [(ngModel)]="chatInput" type="text">
-  <button (click)="sendToGpt3()">Send</button>
+<div style="display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100vh;">
+  <h1>Welcome to the Chat!</h1>
+  <div style="margin-bottom: 20px;">
+    <label for="chatInput">Enter your message:</label>
+    <input id="chatInput" [(ngModel)]="chatInput" type="text" placeholder="Type your message here...">
+    <button (click)="sendToGpt3()">Send</button>
+  </div>
+  <div style="margin-bottom: 20px;">
+    <button (click)="replaceKey()">Replace API Key</button>
+    <button (click)="deleteKey()">Delete API Key</button>
+  </div>
+  <div>
+    <label for="chatOutput">Response:</label>
+    <textarea id="chatOutput" [(ngModel)]="chatOutput" readonly></textarea>
+  </div>
 </div>
-<button (click)="replaceKey()">Replace API Key</button>
-<button (click)="deleteKey()">Delete API Key</button>
-<div>
-  <p>{{chatOutput}}</p>
-</div>
-<!-- app.component.html -->
