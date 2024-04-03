@@ -6,6 +6,7 @@ import { FormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
+import {MatSnackBar} from '@angular/material/snack-bar';
 
 @Component({
   standalone: true,
@@ -19,12 +20,12 @@ export class ChatComponent implements OnInit {
   public chatOutput = '';
   private apiKey: string | null = '';
 
-  constructor(private chatGptService: ChatGptService) { }
+  constructor(private chatGptService: ChatGptService, private _snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
     this.apiKey = localStorage.getItem('apiKey');
     if (this.apiKey) {
-      alert('API key loaded');
+      this.openSnackBar('API key loaded');
     } else {
       this.apiKey = prompt('Please enter your API key');
       if (this.apiKey) {
@@ -41,7 +42,7 @@ export class ChatComponent implements OnInit {
 
       console.log(this.chatOutput);
     } else {
-      alert('No API key provided');
+      this.openSnackBar('No API key provided');
     }
   }
 
@@ -50,13 +51,19 @@ export class ChatComponent implements OnInit {
     if (newKey) {
       this.apiKey = newKey;
       localStorage.setItem('apiKey', newKey);
-      alert('API key replaced');
+      this.openSnackBar('API key replaced');
     }
   }
 
   public deleteKey(): void {
     this.apiKey = null;
     localStorage.removeItem('apiKey');
-    alert('API key deleted');
+    this.openSnackBar('API key deleted');
+  }
+
+  private openSnackBar(message: string): void {
+    this._snackBar.open(message, 'Close', {
+      duration: 1000,
+    });
   }
 }
