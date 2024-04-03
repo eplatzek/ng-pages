@@ -2,20 +2,22 @@
 <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100vh;">
   <h1>Welcome to the Chat!</h1>
   <div>
-    <mat-form-field style="height: auto" appearance="fill">
+    <mat-form-field appearance="fill">
       <mat-label>Enter your message</mat-label>
       <input matInput [(ngModel)]="chatInput" placeholder="Type your message here...">
     </mat-form-field>
-    <button mat-raised-button color="primary" (click)="sendToGpt3()">Send</button>
+    <button mat-raised-button class="ml-2" color="primary" (click)="sendToGpt3()">Send</button>
   </div>
-  <div>
-    <button mat-raised-button color="accent" (click)="replaceKey()">Replace API Key</button>
-    <button mat-raised-button color="warn" (click)="deleteKey()">Delete API Key</button>
-  </div>
+
   <div>
     <mat-form-field appearance="fill">
       <mat-label>Response</mat-label>
       <textarea matInput [(ngModel)]="chatOutput" readonly></textarea>
     </mat-form-field>
+  </div>
+
+  <div>
+    <button mat-raised-button class="mr-2" color="accent" (click)="replaceKey()">Replace API Key</button>
+    <button mat-raised-button color="warn" (click)="deleteKey()">Delete API Key</button>
   </div>
 </div>
