@@ -20,10 +20,9 @@
       step="1"
       showTickMarks
       discrete
-      [(ngModel)]="formality"
       [displayWith]="getFormality"
     >
-      <input matSliderThumb value="3" />
+      <input matSliderThumb value="3" [(ngModel)]="formality" />
     </mat-slider>
     <div>
       <div class="w-full max-w-2xl flex justify-between">

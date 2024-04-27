@@ -24,7 +24,7 @@ export class ChatComponent implements OnInit {
   private apiKey: string | null = '';
 
   // Default values for sliders
-  public formality = 3;
+  public formality: number = 3;
 
   constructor(private chatGptService: ChatGptService, private _snackBar: MatSnackBar) { }
 
@@ -42,7 +42,7 @@ export class ChatComponent implements OnInit {
 
   public sendToGpt3(): void {
     if (this.apiKey) {
-      this.chatGptService.chatWithGpt3(this.chatInput, this.apiKey).subscribe(response => {
+      this.chatGptService.chatWithGpt3WModifications(this.chatInput, this.apiKey, this.getModifications()).subscribe(response => {
         this.chatOutput = response.choices[0].message.content;
       });
 
@@ -71,6 +71,13 @@ export class ChatComponent implements OnInit {
     this._snackBar.open(message, 'Close', {
       duration: 1000,
     });
+  }
+
+  // Function to get modifications
+  getModifications(): object {
+    return {
+      formality: this.getFormality(this.formality)
+    };
   }
 
   // Function to get formality level
