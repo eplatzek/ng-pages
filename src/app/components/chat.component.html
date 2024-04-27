@@ -27,6 +27,7 @@
         <input matSliderThumb value="3" [(ngModel)]="formality" />
       </mat-slider>
     </div>
+
     <div>
       <label for="conciseness-slider">Conciseness:</label>
       <mat-slider
@@ -40,6 +41,22 @@
         [displayWith]="getConciseness"
       >
         <input matSliderThumb value="2" [(ngModel)]="conciseness" />
+      </mat-slider>
+    </div>
+
+    <div>
+      <label for="warmth-slider">Warmth:</label>
+      <mat-slider
+        id="warmth-slider"
+        style="width: 200px"
+        min="1"
+        max="3"
+        step="1"
+        showTickMarks
+        discrete
+        [displayWith]="getWarmth"
+      >
+        <input matSliderThumb value="2" [(ngModel)]="warmth" />
       </mat-slider>
     </div>
    
