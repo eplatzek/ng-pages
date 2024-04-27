@@ -1,16 +1,16 @@
 <!-- chat.component.html -->
 <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100vh;">
   <h1>Welcome to the Chat!</h1>
-  <div>
-    <mat-form-field appearance="fill">
+  <div class="w-full max-w-2xl flex justify-between">
+    <mat-form-field class="w-full max-w-2xl">
       <mat-label>Enter your message</mat-label>
-      <input matInput [(ngModel)]="chatInput" placeholder="Type your message here...">
+      <textarea matInput [(ngModel)]="chatInput" placeholder="Type your message here..."></textarea>
     </mat-form-field>
     <button mat-raised-button class="ml-2" color="primary" (click)="sendToGpt3()">Send</button>
   </div>
 
-  <div>
-    <mat-form-field appearance="fill">
+  <div class="w-full max-w-2xl">
+    <mat-form-field class="w-full max-w-2xl">
       <mat-label>Response</mat-label>
       <textarea matInput [(ngModel)]="chatOutput" readonly></textarea>
     </mat-form-field>
