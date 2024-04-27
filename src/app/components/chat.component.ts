@@ -21,6 +21,11 @@ import { MatSliderModule } from '@angular/material/slider';
 export class ChatComponent implements OnInit {
   public chatInput = '';
   public chatOutput = '';
+
+  selectedResponse = '';
+  responses: string[] = [];
+  currentResponseIndex = -1;
+
   private apiKey: string | null = '';
 
   // Default values for sliders
@@ -46,6 +51,10 @@ export class ChatComponent implements OnInit {
     if (this.apiKey) {
       this.chatGptService.chatWithGpt3WModifications(this.chatInput, this.apiKey, this.getModifications()).subscribe(response => {
         this.chatOutput = response.choices[0].message.content;
+
+        this.responses.push(response.choices[0].message.content);
+        this.currentResponseIndex = this.responses.length - 1;
+        this.updateSelectedResponse()
       });
 
       console.log(this.chatOutput);
@@ -96,6 +105,7 @@ export class ChatComponent implements OnInit {
     }
   }
 
+  // Function to get conciseness level
   getConciseness(level: number): string {
     switch(level) {
       case 1: return 'Concise';
@@ -105,6 +115,7 @@ export class ChatComponent implements OnInit {
     }
   }
 
+  // Function to get warmth level
   getWarmth(level: number): string {
     switch(level) {
       case 1: return 'Cooler';
@@ -112,5 +123,23 @@ export class ChatComponent implements OnInit {
       case 3: return 'Warmer';
       default: return 'Unchanged';
     }
+  }
+
+  public nextResponse(): void {
+    if (this.currentResponseIndex < this.responses.length - 1) {
+      this.currentResponseIndex++;
+      this.updateSelectedResponse();
+    }
+  }
+
+  public previousResponse(): void {
+    if (this.currentResponseIndex > 0) {
+      this.currentResponseIndex--;
+      this.updateSelectedResponse();
+    }
+  }
+
+  public updateSelectedResponse(): void {
+    this.selectedResponse = this.responses[this.currentResponseIndex];
   }
 }

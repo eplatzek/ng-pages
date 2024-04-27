@@ -80,12 +80,21 @@
         </button>
       </div>
 
-      <div class="w-full max-w-2xl">
+      <div class="w-full max-w-2xl mb-16">
         <mat-form-field class="w-full max-w-2xl">
           <mat-label>Response</mat-label>
           <textarea matInput [(ngModel)]="chatOutput" readonly></textarea>
         </mat-form-field>
+
+        <mat-form-field class="w-full max-w-2xl">
+          <mat-label>Response</mat-label>
+          <textarea matInput [(ngModel)]="selectedResponse" placeholder="API response..."></textarea>
+        </mat-form-field>
+        <p>Selected response {{ currentResponseIndex + 1 }} of {{ responses.length }}</p>
+        <button mat-raised-button class="mr-2"(click)="previousResponse()">Previous</button>
+        <button mat-raised-button (click)="nextResponse()">Next</button>
       </div>
+
 
       <div>
         <button
