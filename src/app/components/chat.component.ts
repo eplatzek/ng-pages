@@ -20,7 +20,6 @@ import { MatSliderModule } from '@angular/material/slider';
 
 export class ChatComponent implements OnInit {
   public chatInput = '';
-  public chatOutput = '';
 
   selectedResponse = '';
   responses: string[] = [];
@@ -50,14 +49,10 @@ export class ChatComponent implements OnInit {
   public sendToGpt3(): void {
     if (this.apiKey) {
       this.chatGptService.chatWithGpt3WModifications(this.chatInput, this.apiKey, this.getModifications()).subscribe(response => {
-        this.chatOutput = response.choices[0].message.content;
-
         this.responses.push(response.choices[0].message.content);
         this.currentResponseIndex = this.responses.length - 1;
         this.updateSelectedResponse()
       });
-
-      console.log(this.chatOutput);
     } else {
       this.openSnackBar('No API key provided');
     }

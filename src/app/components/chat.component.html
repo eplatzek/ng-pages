@@ -1,16 +1,6 @@
 <!-- chat.component.html -->
-<div
-  style="
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 100vh;
-  "
->
-  <h1>Welcome to Text Transformer!</h1>
-
-  <div class="w-144">
+<div class="flex h-screen">
+  <div class="w-1/4 bg-gray-200 pl-2 pt-4">
     <h4>Tone</h4>
     <div>
       <label for="formality-slider">Formality:</label>
@@ -59,7 +49,10 @@
         <input matSliderThumb value="2" [(ngModel)]="warmth" />
       </mat-slider>
     </div>
-   
+  </div>
+  <div class="w-3/4 bg-gray-300 pl-4 pt-4">
+    <h1>Welcome to Text Transformer!</h1>
+
     <div>
       <div class="w-full max-w-2xl flex justify-between">
         <mat-form-field class="w-full max-w-2xl">
@@ -83,18 +76,12 @@
       <div class="w-full max-w-2xl mb-16">
         <mat-form-field class="w-full max-w-2xl">
           <mat-label>Response</mat-label>
-          <textarea matInput [(ngModel)]="chatOutput" readonly></textarea>
-        </mat-form-field>
-
-        <mat-form-field class="w-full max-w-2xl">
-          <mat-label>Response</mat-label>
           <textarea matInput [(ngModel)]="selectedResponse" placeholder="API response..."></textarea>
         </mat-form-field>
         <p>Selected response {{ currentResponseIndex + 1 }} of {{ responses.length }}</p>
         <button mat-raised-button class="mr-2"(click)="previousResponse()">Previous</button>
         <button mat-raised-button (click)="nextResponse()">Next</button>
       </div>
-
 
       <div>
         <button
