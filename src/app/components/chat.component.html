@@ -1,6 +1,16 @@
 <!-- chat.component.html -->
 <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100vh;">
   <h1>Welcome to the Chat!</h1>
+
+    
+  <div class="w-144">
+    <h2>Tone</h2>
+    <h3>Formality:</h3>
+    <mat-slider style="width: 200px" min="1" max="5" step="1" showTickMarks discrete [(ngModel)]="formality" [displayWith]="getFormality">
+      <input matSliderThumb value="3">
+    </mat-slider>
+  <div>
+    
   <div class="w-full max-w-2xl flex justify-between">
     <mat-form-field class="w-full max-w-2xl">
       <mat-label>Enter your message</mat-label>

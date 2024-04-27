@@ -8,11 +8,13 @@ import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import {MatSnackBar} from '@angular/material/snack-bar';
+import { MatSliderModule } from '@angular/material/slider';
 
 @Component({
   standalone: true,
   selector: 'app-chat',
-  imports: [FormsModule, MatFormFieldModule, MatInputModule, MatButtonModule, MatCardModule],
+  imports: [FormsModule, MatFormFieldModule, MatInputModule, MatButtonModule, MatCardModule,
+    MatSliderModule  ],
   templateUrl: './chat.component.html'
 })
 
@@ -20,6 +22,9 @@ export class ChatComponent implements OnInit {
   public chatInput = '';
   public chatOutput = '';
   private apiKey: string | null = '';
+
+  // Default values for sliders
+  public formality = 3;
 
   constructor(private chatGptService: ChatGptService, private _snackBar: MatSnackBar) { }
 
@@ -66,5 +71,17 @@ export class ChatComponent implements OnInit {
     this._snackBar.open(message, 'Close', {
       duration: 1000,
     });
+  }
+
+  // Function to get formality level
+  getFormality(level: number): string {
+    switch(level) {
+      case 1: return 'Casual';
+      case 2: return 'SemiCasual';
+      case 3: return 'Neutral';
+      case 4: return 'SemiProfessional';
+      case 5: return 'Professional';
+      default: return 'Neutral';
+    }
   }
 }
