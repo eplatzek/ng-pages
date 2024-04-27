@@ -25,6 +25,7 @@ export class ChatComponent implements OnInit {
 
   // Default values for sliders
   public formality: number = 3;
+  public conciseness: number = 2;
 
   constructor(private chatGptService: ChatGptService, private _snackBar: MatSnackBar) { }
 
@@ -76,7 +77,8 @@ export class ChatComponent implements OnInit {
   // Function to get modifications
   getModifications(): object {
     return {
-      formality: this.getFormality(this.formality)
+      formality: this.getFormality(this.formality),
+      conciseness: this.getConciseness(this.conciseness)
     };
   }
 
@@ -85,10 +87,19 @@ export class ChatComponent implements OnInit {
     switch(level) {
       case 1: return 'Casual';
       case 2: return 'SemiCasual';
-      case 3: return 'Neutral';
+      case 3: return 'Unchanged';
       case 4: return 'SemiProfessional';
       case 5: return 'Professional';
-      default: return 'Neutral';
+      default: return 'Unchanged';
+    }
+  }
+
+  getConciseness(level: number): string {
+    switch(level) {
+      case 1: return 'Verbose';
+      case 2: return 'Unchanged';
+      case 3: return 'Concise';
+      default: return 'Unchanged';
     }
   }
 }

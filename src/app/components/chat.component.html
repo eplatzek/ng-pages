@@ -12,19 +12,37 @@
 
   <div class="w-144">
     <h4>Tone</h4>
-    <label for="formality-slider">Formality:</label>
-    <mat-slider
-      id="formality-slider"
-      style="width: 200px"
-      min="1"
-      max="5"
-      step="1"
-      showTickMarks
-      discrete
-      [displayWith]="getFormality"
-    >
-      <input matSliderThumb value="3" [(ngModel)]="formality" />
-    </mat-slider>
+    <div>
+      <label for="formality-slider">Formality:</label>
+      <mat-slider
+        id="formality-slider"
+        style="width: 200px"
+        min="1"
+        max="5"
+        step="1"
+        showTickMarks
+        discrete
+        [displayWith]="getFormality"
+      >
+        <input matSliderThumb value="3" [(ngModel)]="formality" />
+      </mat-slider>
+    </div>
+    <div>
+      <label for="conciseness-slider">Conciseness:</label>
+      <mat-slider
+        id="conciseness-slider"
+        style="width: 200px"
+        min="1"
+        max="3"
+        step="1"
+        showTickMarks
+        discrete
+        [displayWith]="getConciseness"
+      >
+        <input matSliderThumb value="2" [(ngModel)]="conciseness" />
+      </mat-slider>
+    </div>
+   
     <div>
       <div class="w-full max-w-2xl flex justify-between">
         <mat-form-field class="w-full max-w-2xl">
