@@ -46,6 +46,7 @@ export class ChatComponent implements OnInit {
     }
   }
 
+  // Function to send chat input to GPT-3
   public sendToGpt3(): void {
     if (this.apiKey) {
       this.chatGptService.chatWithGpt3WModifications(this.chatInput, this.apiKey, this.getModifications()).subscribe(response => {
@@ -58,6 +59,7 @@ export class ChatComponent implements OnInit {
     }
   }
 
+  // Function to update the API key
   public replaceKey(): void {
     const newKey = prompt('Please enter your new API key');
     if (newKey) {
@@ -67,12 +69,14 @@ export class ChatComponent implements OnInit {
     }
   }
 
+  // Function to delete the API key
   public deleteKey(): void {
     this.apiKey = null;
     localStorage.removeItem('apiKey');
     this.openSnackBar('API key deleted');
   }
 
+  // Function to open a snackbar
   private openSnackBar(message: string): void {
     this._snackBar.open(message, 'Close', {
       duration: 1000,
@@ -120,6 +124,7 @@ export class ChatComponent implements OnInit {
     }
   }
 
+  // Function to navitage to the next response
   public nextResponse(): void {
     if (this.currentResponseIndex < this.responses.length - 1) {
       this.currentResponseIndex++;
@@ -127,6 +132,7 @@ export class ChatComponent implements OnInit {
     }
   }
 
+  // Function to navigate to the previous response
   public previousResponse(): void {
     if (this.currentResponseIndex > 0) {
       this.currentResponseIndex--;
@@ -134,6 +140,7 @@ export class ChatComponent implements OnInit {
     }
   }
 
+  // Function to update the selected response
   public updateSelectedResponse(): void {
     this.selectedResponse = this.responses[this.currentResponseIndex];
   }
