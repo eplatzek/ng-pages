@@ -12,6 +12,7 @@ export class ChatGptService {
 
   constructor(private http: HttpClient) { }
 
+  // Function to send chat input to GPT-3
   public chatWithGpt3(prompt: string, apiKey: string): Observable<ChatResponse> {
     const data = {
         model: 'gpt-3.5-turbo',
@@ -32,6 +33,7 @@ export class ChatGptService {
     });
   }
 
+  // Function to send chat input to GPT-3 with modifications
   public chatWithGpt3WModifications(prompt: string, apiKey: string, modifications:object): Observable<ChatResponse> {
     const data = {
         model: 'gpt-3.5-turbo',
@@ -54,6 +56,7 @@ export class ChatGptService {
     });
   }
 
+  // Function to convert prompt and modifications to string
   private promptModificationsToString(prompt: string, modifications:object): string {
    return  JSON.stringify({
       instructions: 'You are text reviser. The prompt will contain a text that needs to be revised. Your task is to revise the text to make it meet the required modifications. Also correct spelling errors',
